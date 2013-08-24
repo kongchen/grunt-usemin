@@ -15,7 +15,7 @@ describe('cssprocessor', function () {
       'images/pic.png': 'images/2123.pic.png',
       '/images/pic.png': '/images/2123.pic.png',
       '../../images/pic.png': '../../images/2123.pic.png',
-      'fonts/awesome-font.svg': 'fonts/2123.awesome-font.svg',
+      'fonts/awesome-font.svg': 'fonts/2123.awesome-font.svg'
     };
     var revvedfinder = {
       find: function (s) {

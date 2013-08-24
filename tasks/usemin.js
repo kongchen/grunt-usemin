@@ -69,6 +69,7 @@ var inspect = function (obj) {
 module.exports = function (grunt) {
   var HTMLProcessor = require('../lib/htmlprocessor');
   var CSSProcessor = require('../lib/cssprocessor');
+  var AGJSProcessor = require('../lib/agjsprocessor');
   var RevvedFinder = require('../lib/revvedfinder');
 
   grunt.registerMultiTask('usemin', 'Replaces references to non-minified scripts / stylesheets', function () {
@@ -78,7 +79,8 @@ module.exports = function (grunt) {
 
     var processors = {
       css: CSSProcessor,
-      html: HTMLProcessor
+      html: HTMLProcessor,
+      agjs: AGJSProcessor
     };
 
     this.files.forEach(function (fileObj) {

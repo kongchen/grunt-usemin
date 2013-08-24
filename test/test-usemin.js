@@ -75,6 +75,28 @@ describe('usemin', function () {
     assert.ok(changed.match(/url\(\"\/images\/23012\.test\.png\"/));
   });
 
+  it('should work on Angular JS files', function () {
+        grunt.file.mkdir('views');
+        grunt.file.mkdir('views/misc');
+        grunt.file.write('views/23012.a.html', 'foo');
+        grunt.file.write('views/misc/2a436.a.html', 'foo');
+        grunt.log.muted = true;
+        grunt.config.init();
+        grunt.config('usemin', {agjs: 'scripts/app.js'});
+        grunt.file.copy(path.join(__dirname, 'fixtures/app.js'), 'scripts/app.js');
+        grunt.task.run('usemin');
+        grunt.task.start();
+
+        var changed = grunt.file.read('scripts/app.js');
+
+        // Check replace has performed its duty
+        assert.ok(changed.match(/templateUrl: 'views\/23012\.a\.html'/));
+        assert.ok(changed.match(/templateUrl: 'views\/misc\/2a436\.a\.html'/));
+        //assert.ok(changed.match(/templateUrl: '\/\/views\/a\.html'/));
+        //assert.ok(changed.match(/templateUrl: '\/views\/23012\.a\.html'/));
+        assert.ok(changed.match(/templateUrl: 'views\/nnn\.html'/));
+    });
+
   it('should take into account original file location when replacing', function () {
     grunt.log.muted = true;
     grunt.config.init();
